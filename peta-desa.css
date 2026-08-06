@@ -1,0 +1,259 @@
+/* ===================== PETA DESA HERO ===================== */
+.petadesa-hero {
+  padding: 48px 76px 32px;
+  max-width: 760px;
+}
+
+.petadesa-title {
+  font-weight: 800;
+  font-size: 34px;
+  line-height: 1.25;
+  color: var(--color-navy);
+  margin-bottom: 12px;
+}
+
+.petadesa-desc {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--color-gray-text);
+  max-width: 620px;
+}
+
+/* ===================== MAP SECTION LAYOUT ===================== */
+.petadesa-map-heading {
+  font-weight: 800;
+  font-size: 20px;
+  color: var(--color-navy);
+  padding: 0 76px;
+  margin-bottom: 16px;
+}
+
+.petadesa-map-heading-secondary {
+  margin-top: 8px;
+}
+
+.petadesa-map-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+  padding: 0 76px 24px;
+}
+
+.petadesa-map-section-secondary {
+  padding-bottom: 24px;
+}
+
+/* ===================== LAYER PANEL ===================== */
+.layer-panel {
+  flex: 0 0 278px;
+  background: var(--color-green-pale);
+  border-radius: 16px;
+  padding: 24px 20px 20px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+.layer-panel-title {
+  font-weight: 800;
+  font-size: 19px;
+  color: var(--color-navy);
+  margin-bottom: 20px;
+}
+
+.layer-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.layer-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.layer-icon {
+  flex: 0 0 24px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.layer-icon img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+}
+
+.layer-label {
+  flex: 1 1 auto;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--color-navy);
+}
+
+/* Permanent "RT 1", "RT 2"... labels drawn on top of each RT boundary
+   polygon, matching the labelling shown in the source QGIS project. */
+.pd-rt-label {
+  pointer-events: none;
+  white-space: nowrap;
+  transform: translate(-50%, -50%);
+}
+
+.pd-rt-label span {
+  display: inline-block;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 13px;
+  color: #ffffff;
+  text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000,
+    0 0 4px rgba(0, 0, 0, 0.6);
+  letter-spacing: 0.02em;
+}
+
+.layer-checkbox {
+  position: relative;
+  display: inline-flex;
+  cursor: pointer;
+}
+
+.layer-checkbox input {
+  position: absolute;
+  opacity: 0;
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.layer-checkbox-box {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  border: 1.5px solid var(--color-gray-mid);
+  background: #FFFFFF;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.layer-checkbox-box::after {
+  content: "";
+  width: 13px;
+  height: 8px;
+  border-left: 2.5px solid #FFFFFF;
+  border-bottom: 2.5px solid #FFFFFF;
+  transform: rotate(-45deg) translateY(-1px);
+  opacity: 0;
+}
+
+.layer-checkbox input:checked + .layer-checkbox-box {
+  background: var(--color-green-dark);
+  border-color: var(--color-green-dark);
+}
+
+.layer-checkbox input:checked + .layer-checkbox-box::after {
+  opacity: 1;
+}
+
+.layer-panel-hint {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(7,20,38,0.12);
+}
+
+.hint-swatch {
+  flex: 0 0 24px;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: var(--color-green-dark);
+  margin-top: 2px;
+}
+
+.layer-panel-hint p {
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--color-gray-text);
+}
+
+/* ===================== MAP ===================== */
+.map-wrap {
+  flex: 1 1 auto;
+  min-width: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--color-green-pale);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+#peta-desa-map,
+#peta-desa-map-2 {
+  width: 100%;
+  height: 460px;
+  background: var(--color-green-pale);
+  font-family: 'Manrope', sans-serif;
+}
+
+.map-credit {
+  padding: 0 76px 32px;
+  text-align: right;
+  font-size: 13px;
+  color: var(--color-gray-text);
+}
+
+.map-credit span {
+  color: var(--color-navy);
+  font-weight: 600;
+}
+
+/* Leaflet popup/control theming now lives in the shared leaflet-theme.css
+   (linked in peta-desa.html alongside this file) — see that file for the
+   rules that used to be duplicated here. */
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 1024px) {
+  .petadesa-hero { padding: 40px 32px 24px; }
+  .petadesa-map-heading { padding: 0 32px; }
+  .petadesa-map-section { padding: 0 32px 24px; }
+  .map-credit { padding: 0 32px 32px; }
+}
+
+@media (max-width: 900px) {
+  .petadesa-map-section {
+    flex-direction: column;
+  }
+  .layer-panel {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+  .map-wrap {
+    width: 100%;
+  }
+  #peta-desa-map,
+  #peta-desa-map-2 {
+    height: 380px;
+  }
+}
+
+@media (max-width: 640px) {
+  .petadesa-hero { padding: 32px 16px 20px; }
+  .petadesa-title { font-size: 26px; }
+  .petadesa-map-heading { padding: 0 16px; font-size: 18px; }
+  .petadesa-map-section { padding: 0 16px 20px; gap: 20px; }
+  .map-credit { padding: 0 16px 24px; text-align: left; }
+  #peta-desa-map, #peta-desa-map-2 { height: 320px; }
+  .layer-panel { padding: 20px 16px 16px; }
+}

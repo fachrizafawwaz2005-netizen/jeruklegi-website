@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peta Desa - Jeruklegi - Sistem Informasi Padukuhan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="peta-desa.css">
+<link rel="stylesheet" href="leaflet-theme.css">
+<link rel="stylesheet" href="polish.css">
+</head>
+<body>
+<a class="skip-link" href="#main-content">Lompat ke konten utama</a>
+
+<div class="page-wrap">
+
+  <!-- ===================== NAVBAR ===================== -->
+  <header class="navbar-outer">
+    <nav class="navbar">
+      <div class="brand">
+        <img src="assets/logo.png" alt="Logo Jeruklegi" class="brand-logo">
+        <div class="brand-text">
+          <span class="brand-title">Jeruklegi</span>
+          <span class="brand-subtitle">Sistem Informasi Padukuhan</span>
+        </div>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Beranda</a></li>
+        <li><a href="peta-desa.html" class="nav-link active" aria-current="page">Peta Desa</a></li>
+        <li><a href="umkm.html" class="nav-link">UMKM</a></li>
+        <li><a href="edukasi.html" class="nav-link">Edukasi</a></li>
+        <li><a href="kontak.html" class="nav-link">Kontak</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+
+  <!-- ===================== PETA DESA HERO ===================== -->
+  <section class="petadesa-hero">
+    <p class="section-eyebrow">Peta Spasial</p>
+    <h1 class="petadesa-title">Peta Interaktif Padukuhan Jeruklegi</h1>
+    <p class="petadesa-desc">Jelajahi batas administrasi, lahan pertanian, dan fasilitas umum. Klik area pada peta untuk melihat detail.</p>
+  </section>
+
+  <!-- ===================== PETA ADMINISTRASI DESA ===================== -->
+  <h2 class="petadesa-map-heading">Peta Administrasi Desa</h2>
+  <section class="petadesa-map-section">
+
+    <!-- LAYER PANEL -->
+    <aside class="layer-panel">
+      <h2 class="layer-panel-title">Layer Peta</h2>
+
+      <ul class="layer-list">
+        <li class="layer-item">
+          <span class="layer-icon layer-icon-line"><img src="assets/icon-batas-rt.png" alt=""></span>
+          <span class="layer-label">Batas RT</span>
+          <label class="layer-checkbox">
+            <input type="checkbox" id="layer-toggle-batasrt" checked aria-label="Batas RT">
+            <span class="layer-checkbox-box"></span>
+          </label>
+        </li>
+        <li class="layer-item">
+          <span class="layer-icon"><img src="assets/icon-fasilitas-umum.png" alt=""></span>
+          <span class="layer-label">Fasilitas Umum</span>
+          <label class="layer-checkbox">
+            <input type="checkbox" id="layer-toggle-fasum" aria-label="Fasilitas Umum">
+            <span class="layer-checkbox-box"></span>
+          </label>
+        </li>
+      </ul>
+
+      <div class="layer-panel-hint">
+        <span class="hint-swatch"></span>
+        <p>Centang layer untuk menampilkan wilayah pada peta. Batas RT, jalan, jembatan, dan sungai ditampilkan di peta ini.</p>
+      </div>
+    </aside>
+
+    <!-- MAP 1 -->
+    <div class="map-wrap">
+      <div id="peta-desa-map"></div>
+    </div>
+
+  </section>
+
+  <!-- ===================== PETA LAHAN PERTANIAN ===================== -->
+  <h2 class="petadesa-map-heading petadesa-map-heading-secondary">Peta Lahan Pertanian</h2>
+  <section class="petadesa-map-section petadesa-map-section-secondary">
+
+    <!-- LAYER PANEL -->
+    <aside class="layer-panel">
+      <h2 class="layer-panel-title">Layer Peta</h2>
+
+      <ul class="layer-list">
+        <li class="layer-item">
+          <span class="layer-icon"><img src="assets/icon-lahan-pertanian.png" alt=""></span>
+          <span class="layer-label">Lahan Pertanian</span>
+          <label class="layer-checkbox">
+            <input type="checkbox" id="layer-toggle-lahan" checked aria-label="Lahan Pertanian">
+            <span class="layer-checkbox-box"></span>
+          </label>
+        </li>
+      </ul>
+
+      <div class="layer-panel-hint">
+        <span class="hint-swatch"></span>
+        <p>Centang layer untuk menampilkan titik lahan pertanian pada peta.</p>
+      </div>
+    </aside>
+
+    <!-- MAP 2 -->
+    <div class="map-wrap">
+      <div id="peta-desa-map-2"></div>
+    </div>
+
+  </section>
+
+  <p class="map-credit">Peta oleh <span>Angellyna Az Zahra dan Fayi Zahra Fatima</span></p>
+
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-col footer-brand-col">
+        <div class="footer-brand">
+          <img src="assets/logo.png" alt="Logo Jeruklegi" class="footer-logo">
+          <span class="footer-brand-title">Jeruklegi</span>
+        </div>
+        <p class="footer-brand-desc">Sistem informasi digital untuk profil desa, peta spasial, UMKM, dan edukasi warga.</p>
+      </div>
+      <div class="footer-col">
+        <h4 class="footer-col-title">Kontak</h4>
+        <a class="footer-col-text footer-ig-link" href="https://www.instagram.com/kim_jeruklegi.katongan" target="_blank" rel="noopener">instagram.com/kim_jeruklegi.katongan</a>
+      </div>
+      <div class="footer-col footer-map-col">
+        <h4 class="footer-col-title">Lokasi</h4>
+        <div class="footer-map-embed">
+          <iframe
+            title="Peta Lokasi Padukuhan Jeruklegi"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=110.6255%2C-7.8779%2C110.6455%2C-7.8479&layer=mapnik&marker=-7.8629%2C110.6355"
+            loading="lazy">
+          </iframe>
+        </div>
+        <a class="footer-map-link" href="https://www.openstreetmap.org/?mlat=-7.8629&mlon=110.6355#map=15/-7.8629/110.6355" target="_blank" rel="noopener">Lihat peta lebih besar</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">&copy; 2026 Padukuhan Jeruklegi. Seluruh hak dilindungi.</p>
+      <div class="footer-credit">
+        <span>Designed by KKN PPM UGM 2026</span>
+        <img src="assets/kkn-badge.png" alt="Badge KKN PPM UGM" class="footer-badge">
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="assets/data/batas-rt.js"></script>
+<script src="assets/data/batas-jeruklegi.js"></script>
+<script src="assets/data/jalan.js"></script>
+<script src="assets/data/jalan-lokal.js"></script>
+<script src="assets/data/jembatan.js"></script>
+<script src="assets/data/sungai.js"></script>
+<script src="assets/data/lahan-pertanian.js"></script>
+<script src="assets/data/fasilitas-umum.js"></script>
+<script src="script.js"></script>
+<script src="interactions.js"></script>
+<script src="assets/js/peta-desa.js"></script>
+</body>
+</html>

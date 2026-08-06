@@ -1,0 +1,348 @@
+/* Local override: .page-wrap uses overflow:hidden globally, which breaks
+   position:sticky for the right sidebar on story pages. Scoping the fix to
+   this stylesheet keeps every other page (which doesn't load this file)
+   untouched. */
+.page-wrap {
+  overflow: visible;
+}
+
+/* ===================== STORY HERO (navbar floats over the banner photo) ===================== */
+.story-hero {
+  position: relative;
+}
+
+.story-hero .navbar-outer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+}
+
+/* ===================== STORY BANNER ===================== */
+.story-banner {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1440 / 347;
+  overflow: hidden;
+}
+
+.story-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.story-banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(7,20,38,0.55) 0%, rgba(7,20,38,0.15) 45%, rgba(7,20,38,0) 70%);
+  pointer-events: none;
+}
+
+.story-banner-chip {
+  position: absolute;
+  left: 76px;
+  bottom: 24px;
+  z-index: 2;
+  background: rgba(255,255,255,0.92);
+  color: var(--color-navy);
+  font-weight: 700;
+  font-size: 13px;
+  padding: 8px 18px;
+  border-radius: 24px;
+}
+
+/* ===================== STORY HEADER ===================== */
+.story-header {
+  padding: 32px 76px 0;
+}
+
+.story-title {
+  font-weight: 800;
+  font-size: 34px;
+  line-height: 1.25;
+  color: var(--color-navy);
+  margin-bottom: 20px;
+}
+
+.story-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.story-tag {
+  display: inline-flex;
+  align-items: center;
+  background: var(--color-gray-light);
+  color: var(--color-navy);
+  font-weight: 600;
+  font-size: 13px;
+  padding: 10px 18px;
+  border-radius: 24px;
+  white-space: nowrap;
+}
+
+/* ===================== LAYOUT ===================== */
+.story-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 40px;
+  padding: 32px 76px 0;
+  align-items: start;
+}
+
+.story-main {
+  min-width: 0;
+}
+
+.story-main-image {
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 28px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.story-main-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.story-body p {
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--color-gray-text);
+  text-align: justify;
+  margin-bottom: 24px;
+}
+
+.story-quote {
+  position: relative;
+  background: var(--color-gray-light);
+  border-radius: 4px;
+  padding: 24px 28px 24px 32px;
+  margin: 8px 0 28px;
+}
+
+.story-quote::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 6px;
+  background: var(--color-green-dark);
+  border-radius: 4px 0 0 4px;
+}
+
+.story-quote p {
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--color-navy);
+  text-transform: lowercase;
+  text-align: justify;
+  margin: 0;
+}
+
+.story-photo-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.story-photo-row img,
+.story-single-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+}
+
+.story-photo-row .story-photo {
+  aspect-ratio: 374 / 250;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.story-single-photo {
+  margin-bottom: 28px;
+  border-radius: 12px;
+  overflow: hidden;
+  max-width: 420px;
+}
+
+.story-author {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--color-navy);
+  margin-bottom: 8px;
+}
+
+/* ===================== ASIDE ===================== */
+.story-aside {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  position: sticky;
+  top: 96px;
+  align-self: start;
+}
+
+.story-info-card {
+  background: var(--color-gray-light);
+  border-radius: 16px;
+  padding: 24px 28px;
+}
+
+.story-info-title {
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--color-navy);
+  margin-bottom: 16px;
+}
+
+.story-info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(7,20,38,0.08);
+  font-size: 14px;
+}
+
+.story-info-row:first-of-type {
+  border-top: 1px solid rgba(7,20,38,0.08);
+}
+
+.story-info-label {
+  color: var(--color-gray-text);
+  font-weight: 500;
+}
+
+.story-info-value {
+  color: var(--color-navy);
+  font-weight: 700;
+  text-align: right;
+}
+
+.story-map-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+  background: var(--color-green-dark);
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 14px 20px;
+  border-radius: 30px;
+  text-align: center;
+}
+
+.story-lain-card {
+  background: var(--color-green-dark);
+  border-radius: 16px;
+  padding: 24px 28px;
+}
+
+.story-lain-title {
+  font-weight: 800;
+  font-size: 18px;
+  color: #FFFFFF;
+  margin-bottom: 16px;
+}
+
+.story-lain-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.story-lain-item {
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.9);
+  font-weight: 500;
+}
+
+.story-lain-item a {
+  color: #FFFFFF;
+  font-weight: 700;
+  transition: opacity 0.2s ease;
+}
+
+.story-lain-item a:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+.story-lain-item.current a {
+  text-decoration: underline;
+}
+
+/* ===================== GALLERY ===================== */
+.story-gallery {
+  padding: 8px 76px 64px;
+}
+
+.story-gallery-title {
+  font-weight: 800;
+  font-size: 28px;
+  color: var(--color-navy);
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--color-gray-light);
+  margin-bottom: 24px;
+}
+
+.story-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  max-width: 780px;
+}
+
+.story-gallery-photo {
+  aspect-ratio: 374 / 250;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.story-gallery-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 1024px) {
+  .story-banner-chip { left: 32px; }
+  .story-header { padding: 28px 32px 0; }
+  .story-layout { padding: 28px 32px 0; grid-template-columns: minmax(0, 1fr) 300px; gap: 28px; }
+  .story-gallery { padding: 8px 32px 56px; }
+}
+
+@media (max-width: 860px) {
+  .story-layout { grid-template-columns: 1fr; }
+  .story-aside { position: static; }
+}
+
+@media (max-width: 640px) {
+  .story-banner-chip { left: 16px; bottom: 16px; padding: 6px 14px; font-size: 12px; }
+  .story-header { padding: 24px 16px 0; }
+  .story-title { font-size: 26px; }
+  .story-layout { padding: 20px 16px 0; gap: 24px; }
+  .story-photo-row { grid-template-columns: 1fr; }
+  .story-gallery { padding: 8px 16px 48px; }
+  .story-gallery-grid { grid-template-columns: 1fr; max-width: 100%; }
+  .story-gallery-title { font-size: 22px; }
+}

@@ -1,0 +1,390 @@
+/* =========================================================================
+   POLISH.CSS
+   Site-wide production-polish layer: motion, interaction, and a11y states.
+   Loaded AFTER every other stylesheet on every page.
+   Intentionally does NOT change layout, spacing, color, or typography
+   values that already exist in style.css / <page>.css / <page>-detail.css
+   — it only adds transitions, hover/focus refinements, unifies a couple
+   of near-duplicate shadow/timing values, and scroll-reveal utilities.
+   ========================================================================= */
+
+:root {
+  /* Unified motion tokens (previously a mix of hardcoded 0.15s/0.2s ease) */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 0.18s;
+  --dur-base: 0.28s;
+  --dur-slow: 0.5s;
+
+  /* Unified focus ring, tuned to the existing palette */
+  --focus-ring-color: rgba(0, 103, 22, 0.55);
+  --focus-ring-offset: 3px;
+
+  /* Unified card elevation language. These are the values story-card and
+     edukasi-card already used — every other card now shares them instead
+     of each having its own slightly-different shadow. */
+  --shadow-card-resting: 0 6px 14px rgba(0, 0, 0, 0.05);
+  --shadow-card-hover: 0 10px 22px rgba(0, 0, 0, 0.08);
+  --lift-card: -2px;
+}
+
+/* ===================== GLOBAL MOTION HYGIENE ===================== */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Respect user motion preference across the whole site */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal,
+  .hero-fade {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ===================== SKIP LINK (a11y, invisible until focused) ===================== */
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -48px;
+  z-index: 1000;
+  background: var(--color-navy);
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 12px 20px;
+  border-radius: 24px;
+  transition: top var(--dur-base) var(--ease-out);
+}
+
+.skip-link:focus {
+  top: 16px;
+  outline: none;
+  box-shadow: 0 0 0 var(--focus-ring-offset) rgba(255, 255, 255, 0.9),
+              0 0 0 calc(var(--focus-ring-offset) + 2.5px) var(--focus-ring-color);
+}
+
+/* ===================== FOCUS-VISIBLE (keyboard accessibility) ===================== */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+.layer-checkbox input:focus-visible + .layer-checkbox-box,
+.leaflet-control a:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 var(--focus-ring-offset) rgba(255, 255, 255, 0.9),
+              0 0 0 calc(var(--focus-ring-offset) + 2.5px) var(--focus-ring-color);
+  border-radius: inherit;
+}
+
+/* Cards/images that aren't natively focusable but wrap a link */
+.story-card:has(a:focus-visible),
+.edukasi-card:has(a:focus-visible),
+.info-card:has(a:focus-visible) {
+  box-shadow: 0 0 0 2px var(--focus-ring-color);
+}
+
+/* ===================== SCROLL REVEAL ===================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out);
+  transition-delay: var(--reveal-delay, 0s);
+  will-change: opacity, transform;
+}
+
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===================== HERO / BANNER ON-LOAD FADE ===================== */
+/* Above-the-fold content, so this fires once on load rather than on scroll. */
+.hero-fade {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out);
+}
+
+.hero-fade.hero-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===================== LAZY IMAGE LOAD-IN ===================== */
+img[loading="lazy"] {
+  opacity: 0;
+  transition: opacity var(--dur-slow) var(--ease-out);
+}
+
+img[loading="lazy"].img-loaded,
+img[loading="lazy"].img-loaded-instant {
+  opacity: 1;
+}
+
+/* ===================== NAVBAR ===================== */
+.nav-link {
+  transition: background var(--dur-base) var(--ease-out), color var(--dur-base) var(--ease-out);
+  position: relative;
+}
+
+.nav-link:hover {
+  background: rgba(157, 161, 164, 0.45);
+  color: var(--color-navy);
+}
+
+.nav-link.active:hover {
+  background: var(--color-gray-mid);
+}
+
+.brand-logo {
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.brand:hover .brand-logo {
+  transform: rotate(-6deg) scale(1.05);
+}
+
+/* ===================== BUTTONS ===================== */
+.btn {
+  transition: transform var(--dur-fast) var(--ease-out),
+              box-shadow var(--dur-base) var(--ease-out),
+              background var(--dur-base) var(--ease-out),
+              opacity var(--dur-base) var(--ease-out);
+}
+
+.btn-primary:hover {
+  background: var(--color-green);
+  box-shadow: 0 10px 22px rgba(0, 103, 22, 0.28);
+  transform: translateY(-2px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 10px rgba(0, 103, 22, 0.2);
+}
+
+.btn-secondary:hover {
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+  transform: translateY(-2px);
+}
+
+.btn-secondary:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+}
+
+.story-map-btn {
+  transition: background var(--dur-base) var(--ease-out), transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+}
+
+.story-map-btn:hover {
+  background: var(--color-green);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(0, 103, 22, 0.25);
+}
+
+.story-map-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 10px rgba(0, 103, 22, 0.2);
+}
+
+/* ===================== CARDS (one unified lift + shadow language) =====================
+   story-card / edukasi-card already defined translateY(-2px) + this exact
+   hover shadow in umkm.css / edukasi.css — that pairing is now the site's
+   one "card lift" standard. Here we (a) bring stat-card / info-card up to
+   the same standard, and (b) normalize stat-card's resting shadow, which
+   was the one outlier (0 8px 16px / 0.06 vs everyone else's 0 6px 14px / 0.05). */
+.stat-card,
+.info-card,
+.story-card,
+.edukasi-card {
+  transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+}
+
+.stat-card {
+  box-shadow: var(--shadow-card-resting);
+}
+
+.stat-card:hover,
+.info-card:hover {
+  transform: translateY(var(--lift-card));
+  box-shadow: var(--shadow-card-hover);
+}
+
+.stat-icon {
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.stat-card:hover .stat-icon {
+  transform: scale(1.08);
+}
+
+.story-card-image-wrap,
+.edukasi-card-image-wrap,
+.story-gallery-photo,
+.story-photo,
+.story-single-photo,
+.story-main-image,
+.kontak-ig-preview {
+  overflow: hidden;
+}
+
+.story-card-image-wrap img,
+.edukasi-card-image-wrap img,
+.story-gallery-photo img,
+.story-photo img,
+.story-single-photo img,
+.story-main-image img {
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+.story-card:hover .story-card-image-wrap img,
+.edukasi-card:hover .edukasi-card-image-wrap img,
+.story-gallery-photo:hover img,
+.story-photo:hover img,
+.story-single-photo:hover img,
+.story-main-image:hover img {
+  transform: scale(1.045);
+}
+
+.story-card-arrow,
+.edukasi-card-arrow {
+  transition: transform var(--dur-base) var(--ease-out), color var(--dur-base) var(--ease-out);
+}
+
+.story-card:hover .story-card-arrow,
+.edukasi-card:hover .edukasi-card-arrow {
+  transform: translate(3px, -3px);
+  color: var(--color-green);
+}
+
+.hero-image {
+  transition: transform var(--dur-slow) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+}
+
+.hero-image-wrap:hover .hero-image {
+  transform: translateY(-4px);
+  box-shadow: 0 26px 48px rgba(0, 0, 0, 0.18);
+}
+
+/* Static aside/utility cards get the same resting shadow token where they
+   already had an equivalent value, so every "soft card" on the site reads
+   as one consistent surface — no new hover motion added to non-interactive
+   panels, to avoid implying they're clickable when they aren't. */
+.story-info-card,
+.story-lain-card,
+.edu-doc-card,
+.edu-stats-card,
+.edu-caption-card,
+.edu-article-card,
+.kontak-map-card,
+.kontak-social-card,
+.layer-panel {
+  transition: box-shadow var(--dur-base) var(--ease-out);
+}
+
+.edu-doc-row {
+  transition: opacity var(--dur-base) var(--ease-out), background var(--dur-base) var(--ease-out);
+}
+
+.edu-doc-row:hover {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+/* ===================== LINKS ===================== */
+.footer-ig-link,
+.kontak-ig-handle,
+.footer-map-link,
+.story-lain-item a,
+.edu-lain-item a {
+  transition: color var(--dur-base) var(--ease-out), opacity var(--dur-base) var(--ease-out);
+}
+
+.kontak-ig-preview {
+  transition: opacity var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out);
+}
+
+.kontak-ig-preview:hover {
+  transform: translateY(-2px);
+}
+
+.footer-map-link {
+  position: relative;
+}
+
+.footer-map-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: -2px;
+  height: 1px;
+  background: currentColor;
+  transition: right var(--dur-base) var(--ease-out);
+}
+
+.footer-map-link:hover::after {
+  right: 0;
+}
+
+/* ===================== LAYER TOGGLES / CHECKBOXES ===================== */
+.layer-checkbox-box {
+  transition: background var(--dur-fast) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out),
+              transform var(--dur-fast) var(--ease-out);
+}
+
+.layer-checkbox:hover .layer-checkbox-box {
+  border-color: var(--color-green-dark);
+}
+
+.layer-checkbox input:active + .layer-checkbox-box {
+  transform: scale(0.92);
+}
+
+.layer-checkbox-box::after {
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+
+/* ===================== LEAFLET POPUP / CONTROL POLISH ===================== */
+.leaflet-popup {
+  transition: opacity var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out);
+}
+
+.leaflet-popup-content-wrapper,
+.pd-popup-photo {
+  transition: box-shadow var(--dur-base) var(--ease-out);
+}
+
+.leaflet-control-zoom a,
+.leaflet-control-layers-toggle {
+  transition: background var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+}
+
+.leaflet-control-zoom a:hover {
+  transform: scale(1.06);
+}
+
+.leaflet-marker-icon {
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+/* ===================== MISC PROFESSIONAL DETAILS ===================== */
+.umkm-map-chip {
+  transition: box-shadow var(--dur-base) var(--ease-out);
+}
+
+::selection {
+  background: var(--color-green-pale);
+  color: var(--color-green-dark);
+}

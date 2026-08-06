@@ -1,0 +1,442 @@
+/* Local override: .page-wrap uses overflow:hidden globally, which breaks
+   position:sticky for the right sidebar on education detail pages. Scoping
+   the fix to this stylesheet keeps every other page (which doesn't load
+   this file) untouched. */
+.page-wrap {
+  overflow: visible;
+}
+
+/* ===================== DETAIL HERO (navbar floats over the banner photo, matching the UMKM story pages) ===================== */
+.edu-hero {
+  position: relative;
+}
+
+.edu-hero .navbar-outer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+}
+
+/* ===================== DETAIL HERO BANNER ===================== */
+.edu-banner {
+  position: relative;
+  width: 100%;
+  height: 260px;
+  overflow: hidden;
+}
+
+.edu-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.edu-banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(7,20,38,0.55) 0%, rgba(7,20,38,0.15) 45%, rgba(7,20,38,0) 70%);
+  pointer-events: none;
+}
+
+/* ===================== DETAIL HEADER ===================== */
+.edu-header {
+  padding: 40px 76px 0;
+}
+
+.edu-detail-title {
+  font-weight: 800;
+  font-size: 32px;
+  line-height: 1.3;
+  color: var(--color-navy);
+  max-width: 900px;
+  margin-bottom: 16px;
+}
+
+.edu-detail-desc {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-gray-text);
+  max-width: 760px;
+  margin-bottom: 24px;
+}
+
+.edu-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.edu-tag {
+  display: inline-flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--color-gray-text);
+  background: var(--color-bg);
+  border: 1px solid var(--color-gray-light);
+  padding: 8px 18px;
+  border-radius: 30px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* ===================== DETAIL LAYOUT ===================== */
+.edu-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+  padding: 0 76px 24px;
+}
+
+.edu-main {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.edu-aside {
+  flex: 0 0 320px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  position: sticky;
+  top: 24px;
+}
+
+/* ===================== POSTER IMAGE ===================== */
+.edu-poster {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+  margin-bottom: 24px;
+}
+
+.edu-poster img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ===================== CAPTION / SUMMARY CARD ===================== */
+.edu-caption-card {
+  background: var(--color-green-pale);
+  border-radius: 16px;
+  padding: 24px 28px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.05);
+  margin-bottom: 20px;
+}
+
+.edu-caption-card p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--color-gray-text);
+  text-align: justify;
+}
+
+.edu-caption-card p + p {
+  margin-top: 16px;
+}
+
+.edu-author {
+  text-align: right;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--color-navy);
+  margin-bottom: 24px;
+}
+
+/* ===================== SIDEBAR: EDUKASI LAIN ===================== */
+.edu-lain {
+  background: var(--color-green-dark);
+  border-radius: 16px;
+  padding: 24px 24px 28px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+}
+
+.edu-lain-title {
+  font-weight: 800;
+  font-size: 18px;
+  color: #FFFFFF;
+  padding-bottom: 14px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.25);
+}
+
+.edu-lain-list {
+  counter-reset: edu-lain-counter;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.edu-lain-item {
+  display: flex;
+  gap: 10px;
+  counter-increment: edu-lain-counter;
+}
+
+.edu-lain-item::before {
+  content: counter(edu-lain-counter) ".";
+  font-weight: 700;
+  color: rgba(255,255,255,0.85);
+  flex: 0 0 auto;
+}
+
+.edu-lain-item a {
+  font-size: 14.5px;
+  line-height: 1.55;
+  font-weight: 600;
+  color: rgba(255,255,255,0.92);
+  transition: color 0.2s ease;
+}
+
+.edu-lain-item a:hover {
+  color: #FFFFFF;
+  text-decoration: underline;
+}
+
+.edu-lain-item.current a {
+  color: #FFFFFF;
+  text-decoration: underline;
+  cursor: default;
+  pointer-events: none;
+}
+
+/* ===================== SIDEBAR: DOKUMEN / STATS (article 4) ===================== */
+.edu-doc-card,
+.edu-stats-card {
+  background: var(--color-bg);
+  border: 1px solid var(--color-gray-light);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.05);
+}
+
+.edu-doc-title {
+  font-weight: 800;
+  font-size: 15px;
+  color: var(--color-green);
+  margin-bottom: 14px;
+}
+
+.edu-doc-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--color-green-pale);
+  border-radius: 12px;
+  padding: 14px 16px;
+  transition: opacity 0.2s ease;
+}
+
+.edu-doc-row:hover {
+  opacity: 0.85;
+}
+
+.edu-doc-icon {
+  flex: 0 0 auto;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edu-doc-icon img {
+  width: 28px;
+  height: auto;
+}
+
+.edu-doc-text {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.edu-doc-name {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--color-navy);
+  margin-bottom: 2px;
+}
+
+.edu-doc-meta {
+  font-size: 12px;
+  color: var(--color-gray-text);
+}
+
+.edu-doc-download {
+  flex: 0 0 auto;
+  width: 20px;
+  height: 20px;
+  color: var(--color-green);
+}
+
+.edu-doc-download svg {
+  width: 100%;
+  height: 100%;
+}
+
+.edu-stats-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.edu-stat-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.edu-stat-icon {
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--color-green-pale);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edu-stat-icon img {
+  width: 20px;
+  height: auto;
+}
+
+.edu-stat-text {
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--color-navy);
+}
+
+/* ===================== ARTICLE BODY (used in article 4 & 5) ===================== */
+.edu-article-heading {
+  font-weight: 800;
+  font-size: 20px;
+  color: var(--color-navy);
+  margin: 32px 0 12px;
+}
+
+.edu-article-heading:first-child {
+  margin-top: 0;
+}
+
+.edu-article-card {
+  background: var(--color-green-pale);
+  border-radius: 16px;
+  padding: 22px 26px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.05);
+  margin-bottom: 8px;
+}
+
+.edu-article-card p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--color-gray-text);
+}
+
+.edu-article-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.edu-article-list li {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--color-gray-text);
+}
+
+.edu-article-list.edu-numbered {
+  list-style: decimal;
+  padding-left: 20px;
+}
+
+.edu-article-list.edu-numbered li {
+  padding-left: 6px;
+}
+
+.edu-article-body p {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--color-navy);
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+.edu-article-subheading {
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--color-navy);
+  margin: 28px 0 10px;
+}
+
+.edu-article-image {
+  margin: 20px 0;
+}
+
+.edu-article-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  display: block;
+}
+
+.edu-article-caption {
+  font-size: 13px;
+  color: var(--color-gray-text);
+  text-align: center;
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.edu-article-image-narrow {
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.edu-references {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 8px;
+}
+
+.edu-references li {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--color-gray-text);
+}
+
+.edu-references a {
+  color: var(--color-green);
+  text-decoration: underline;
+  word-break: break-word;
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 1024px) {
+  .edu-header { padding: 32px 32px 0; }
+  .edu-layout { padding: 0 32px 24px; gap: 24px; }
+  .edu-detail-title { font-size: 27px; }
+}
+
+@media (max-width: 900px) {
+  .edu-banner { height: 200px; }
+  .edu-layout { flex-direction: column; }
+  .edu-aside { flex-basis: auto; width: 100%; position: static; }
+}
+
+@media (max-width: 640px) {
+  .edu-header { padding: 24px 16px 0; }
+  .edu-layout { padding: 0 16px 24px; }
+  .edu-detail-title { font-size: 22px; }
+  .edu-banner { height: 160px; }
+  .edu-caption-card, .edu-article-card { padding: 18px 18px; }
+}

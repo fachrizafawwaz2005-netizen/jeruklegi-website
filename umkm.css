@@ -1,0 +1,173 @@
+/* ===================== UMKM HERO ===================== */
+.umkm-hero {
+  padding: 48px 76px 8px;
+  max-width: 780px;
+}
+
+.umkm-eyebrow {
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--color-orange-dark);
+  margin-bottom: 16px;
+}
+
+.umkm-title {
+  font-weight: 800;
+  font-size: 34px;
+  line-height: 1.25;
+  color: var(--color-navy);
+  margin-bottom: 12px;
+}
+
+.umkm-desc {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--color-gray-text);
+  max-width: 660px;
+}
+
+/* ===================== MAP SECTION ===================== */
+.umkm-map-section {
+  padding: 32px 76px 8px;
+}
+
+.umkm-map-wrap {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--color-green-pale);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+#umkm-map {
+  width: 100%;
+  height: 520px;
+  background: var(--color-green-pale);
+  font-family: 'Manrope', sans-serif;
+}
+
+.umkm-map-chip {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 500;
+  background: #FFFFFF;
+  color: var(--color-navy);
+  font-weight: 700;
+  font-size: 14px;
+  padding: 10px 18px;
+  border-radius: 24px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+  pointer-events: none;
+}
+
+.map-credit {
+  padding: 12px 76px 32px;
+  text-align: right;
+  font-size: 13px;
+  color: var(--color-gray-text);
+}
+
+.map-credit span {
+  color: var(--color-navy);
+  font-weight: 600;
+}
+
+/* Leaflet popup/control theming now lives in the shared leaflet-theme.css
+   (linked in umkm.html alongside this file) — see that file for the rules
+   that used to be duplicated here. */
+
+/* ===================== KISAH UMKM (STORY CARDS) ===================== */
+.umkm-stories {
+  padding: 48px 76px 80px;
+}
+
+.umkm-stories-title {
+  font-weight: 800;
+  font-size: 34px;
+  color: var(--color-navy);
+  margin-bottom: 32px;
+}
+
+.story-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.story-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-green-pale);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.story-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.08);
+}
+
+.story-card-image-wrap {
+  width: 100%;
+  aspect-ratio: 336 / 137;
+}
+
+.story-card-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.story-card-body {
+  position: relative;
+  padding: 20px 56px 24px 24px;
+  flex: 1 1 auto;
+}
+
+.story-card-title {
+  font-weight: 800;
+  font-size: 17px;
+  line-height: 1.35;
+  color: var(--color-navy);
+}
+
+.story-card-arrow {
+  position: absolute;
+  right: 20px;
+  bottom: 18px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-green-dark);
+}
+
+.story-card-arrow svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 1024px) {
+  .umkm-hero { padding: 40px 32px 8px; }
+  .umkm-map-section { padding: 24px 32px 8px; }
+  .map-credit { padding: 12px 32px 32px; }
+  .umkm-stories { padding: 40px 32px 64px; }
+  .story-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .umkm-hero { padding: 32px 16px 8px; }
+  .umkm-title { font-size: 26px; }
+  .umkm-map-section { padding: 20px 16px 8px; }
+  #umkm-map { height: 380px; }
+  .map-credit { padding: 10px 16px 24px; text-align: left; }
+  .umkm-stories { padding: 32px 16px 48px; }
+  .umkm-stories-title { font-size: 26px; margin-bottom: 24px; }
+  .story-grid { grid-template-columns: 1fr; gap: 20px; }
+}

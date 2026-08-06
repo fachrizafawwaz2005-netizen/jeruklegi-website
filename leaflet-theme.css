@@ -1,0 +1,89 @@
+/* =========================================================================
+   LEAFLET-THEME.CSS
+   Shared Leaflet popup / control theming for the two map pages (umkm.html
+   and peta-desa.html). This block used to be duplicated verbatim at the
+   bottom of both umkm.css and peta-desa.css — pulled out here so it's
+   defined once. No rule values were changed.
+   ========================================================================= */
+
+/* ===================== LEAFLET POPUP THEMING ===================== */
+.leaflet-popup-content-wrapper {
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.leaflet-popup-content {
+  font-family: 'Manrope', sans-serif;
+  color: var(--color-navy);
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 12px 14px;
+}
+
+.pd-popup-title {
+  font-weight: 800;
+  font-size: 14px;
+  color: var(--color-navy);
+  margin-bottom: 4px;
+  display: block;
+}
+
+.pd-popup-tag {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--color-green-dark);
+  background: var(--color-green-pale);
+  border-radius: 20px;
+  padding: 2px 10px;
+  margin-bottom: 6px;
+}
+
+.pd-popup-row {
+  margin-top: 3px;
+}
+
+.pd-popup-row b {
+  color: var(--color-gray-text);
+  font-weight: 600;
+}
+
+.pd-popup-photo {
+  margin-top: 10px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.pd-popup-photo iframe {
+  display: block;
+}
+
+.leaflet-container a.leaflet-popup-close-button {
+  color: var(--color-gray-text);
+}
+
+.leaflet-control-zoom a {
+  font-family: 'Manrope', sans-serif;
+  color: var(--color-navy) !important;
+}
+
+.leaflet-control-layers {
+  border-radius: 12px !important;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.12) !important;
+  font-family: 'Manrope', sans-serif;
+  border: none !important;
+}
+
+.leaflet-control-layers-toggle {
+  border-radius: 12px !important;
+}
+
+.leaflet-control-layers-expanded {
+  padding: 10px 14px !important;
+  color: var(--color-navy);
+  font-size: 13px;
+}
+
+.leaflet-control-layers-selector {
+  margin-right: 6px;
+}

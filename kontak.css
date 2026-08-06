@@ -1,0 +1,123 @@
+/* ===================== KONTAK HERO ===================== */
+.kontak-hero {
+  padding: 48px 76px 32px;
+  max-width: 760px;
+}
+
+.kontak-title {
+  font-weight: 800;
+  font-size: 34px;
+  line-height: 1.25;
+  color: var(--color-navy);
+}
+
+/* ===================== KONTAK CONTENT LAYOUT ===================== */
+.kontak-content {
+  display: flex;
+  align-items: stretch;
+  gap: 32px;
+  padding: 0 76px 48px;
+}
+
+/* ===================== MAP CARD ===================== */
+.kontak-map-card {
+  flex: 1 1 480px;
+  min-width: 0;
+  background: var(--color-bg);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.05);
+  border: 1px solid var(--color-gray-light);
+  display: flex;
+}
+
+.kontak-map-embed {
+  flex: 1 1 auto;
+  min-height: 420px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.kontak-map-embed iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+/* ===================== SOCIAL CARD ===================== */
+.kontak-social-card {
+  flex: 1 1 480px;
+  min-width: 0;
+  background: var(--color-gray-light);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+.kontak-social-title {
+  font-weight: 800;
+  font-size: 19px;
+  color: var(--color-navy);
+  margin-bottom: 20px;
+}
+
+.kontak-ig-preview {
+  display: block;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: opacity 0.2s ease;
+}
+
+.kontak-ig-preview:hover {
+  opacity: 0.9;
+}
+
+.kontak-ig-preview img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.kontak-ig-caption {
+  margin-top: 20px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--color-gray-text);
+}
+
+.kontak-ig-handle {
+  color: var(--color-navy);
+  font-weight: 700;
+  transition: color 0.2s ease;
+}
+
+.kontak-ig-handle:hover {
+  color: var(--color-green);
+  text-decoration: underline;
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 1024px) {
+  .kontak-hero { padding: 40px 32px 24px; }
+  .kontak-content { padding: 0 32px 40px; }
+}
+
+@media (max-width: 900px) {
+  .kontak-content {
+    flex-direction: column;
+  }
+  .kontak-map-embed {
+    min-height: 320px;
+  }
+}
+
+@media (max-width: 640px) {
+  .kontak-hero { padding: 32px 16px 20px; }
+  .kontak-title { font-size: 26px; }
+  .kontak-content { padding: 0 16px 32px; gap: 20px; }
+  .kontak-map-embed { min-height: 260px; }
+  .kontak-social-card { padding: 20px 16px; }
+}
